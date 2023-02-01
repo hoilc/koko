@@ -62,6 +62,7 @@ const (
 
 func NewSSHServer(handler SSHHandler) *Server {
 	srv := &ssh.Server{
+		Version: "OpenSSH",
 		LocalPortForwardingCallback: func(ctx ssh.Context, destinationHost string, destinationPort uint32) bool {
 			return handler.LocalPortForwardingPermission(ctx, destinationHost, destinationPort)
 		},
