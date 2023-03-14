@@ -344,6 +344,8 @@ func (p *Parser) clearInputBuffer() {
 
 func (p *Parser) forbiddenCommand(cmd string) {
 	lang := i18n.NewLang(p.i18nLang)
+	cmd = strings.ReplaceAll(cmd, "\r", " ")
+	cmd = strings.ReplaceAll(cmd, "\n", " ")
 	fbdMsg := utils.WrapperWarn(fmt.Sprintf(lang.T("Command `%s` is forbidden"), cmd))
 	p.srvOutputChan <- []byte("\r\n" + fbdMsg)
 	p.cmdRecordChan <- &ExecutedCommand{
@@ -478,6 +480,8 @@ func (p *Parser) waitCommandConfirm() {
 	detailURL := resp.TicketDetailUrl
 	reviewers := resp.Reviewers
 	msg := lang.T("Please waiting for the reviewers to confirm command `%s`, cancel by CTRL+C.")
+	cmd = strings.ReplaceAll(cmd, "\r", "")
+	cmd = strings.ReplaceAll(cmd, "\n", "")
 	waitMsg := fmt.Sprintf(msg, cmd)
 	checkTimer := time.NewTicker(10 * time.Second)
 	defer checkTimer.Stop()
