@@ -7,7 +7,7 @@ require (
 	github.com/ClickHouse/clickhouse-go v1.5.4
 	github.com/LeeEirc/elfinder v0.0.14
 	github.com/LeeEirc/httpsig v1.2.1
-	github.com/LeeEirc/tclientlib v0.0.1
+	github.com/LeeEirc/tclientlib v0.0.2
 	github.com/LeeEirc/terminalparser v0.0.0-20220328021224-de16b7643ea4
 	github.com/aliyun/aliyun-oss-go-sdk v1.9.8
 	github.com/aws/aws-sdk-go v1.19.46
