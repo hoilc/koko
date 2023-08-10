@@ -2,9 +2,9 @@ package handler
 
 import (
 	"fmt"
-	"github.com/jumpserver/koko/pkg/proxy"
 	"io"
 	"net"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -16,6 +16,7 @@ import (
 	"github.com/jumpserver/koko/pkg/jms-sdk-go/model"
 	"github.com/jumpserver/koko/pkg/jms-sdk-go/service"
 	"github.com/jumpserver/koko/pkg/logger"
+	"github.com/jumpserver/koko/pkg/proxy"
 	"github.com/jumpserver/koko/pkg/srvconn"
 	"github.com/jumpserver/koko/pkg/utils"
 )
@@ -250,7 +251,8 @@ func (d *DirectHandler) chooseAccount(permAccounts []model.PermAccount) (model.P
 		return permAccounts[0], true
 	default:
 	}
-	displayAccounts := permAccounts
+	displayAccounts := model.PermAccountList(permAccounts)
+	sort.Sort(displayAccounts)
 
 	idLabel := lang.T("ID")
 	nameLabel := lang.T("Name")
